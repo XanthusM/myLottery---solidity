@@ -1,0 +1,39 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/xanthus/Рабочий стол/myLottery-main/myLottery-main/contracts/lottery.sol": {
+      "lastModificationDate": 1633203510623,
+      "contentHash": "ef3b092de3bafbaf19e40fdc342ec882",
+      "sourceName": "contracts/lottery.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "myLottery"
+      ]
+    }
+  }
+}
