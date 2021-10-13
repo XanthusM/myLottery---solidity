@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/12</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/5</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/12</span>
+        <span class='fraction'>13/13</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -80,7 +80,12 @@
 35
 36
 37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+38
+39
+40
+41
+42
+43</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -92,32 +97,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15×</span>
-<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.8.0;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 &nbsp;
 contract myLottery  //xx bad identation, use some plugin for solidity
 {
@@ -128,31 +139,35 @@ contract myLottery  //xx bad identation, use some plugin for solidity
     mapping (address =&gt; uint) public balance;
     uint public winnerNum;
 &nbsp;
-<span class="fstat-no" title="function not covered" >modifier managerOnly() {</span>
-<span class="cstat-no" title="statement not covered" >    require(msg.sender == manager)</span>;
-    _;
-}
+    modifier managerOnly() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(msg.sender == manager);
+        _;
+    }
 &nbsp;
-constructor(uint _prizeAmount){
-    manager = msg.sender;
-    prizeAmount= _prizeAmount;
- }
+    constructor(uint _prizeAmount){
+        manager = msg.sender;
+        prizeAmount= _prizeAmount;
+    }
 &nbsp;
     function f() view external returns(uint256) {return 42;}
 &nbsp;
-<span class="fstat-no" title="function not covered" >function buyLotteryTicket() public payable{</span>
-<span class="cstat-no" title="statement not covered" >    require(msg.value &gt; 1 ether)</span>;
-<span class="cstat-no" title="statement not covered" >    lotteryPlayers.push(msg.sender)</span>;
- }
+    function buyLotteryTicket() public payable{
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(msg.value &gt;= 1 ether, "SMALL_ETH");
+        lotteryPlayers.push(msg.sender);
+     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >function finishLottery() public managerOnly {</span>
-<span class="cstat-no" title="statement not covered" >    require(lotteryPlayers.length != 0 )</span>;
-<span class="cstat-no" title="statement not covered" >    bytes memory randomInfo = abi.encodePacked(block.timestamp,block.difficulty,lotteryPlayers.length);</span>
-<span class="cstat-no" title="statement not covered" >    bytes32 randomHash = keccak256(randomInfo);</span>
-<span class="cstat-no" title="statement not covered" >    winnerNum = uint(randomHash)%lotteryPlayers.length</span>;
-<span class="cstat-no" title="statement not covered" >    payable(lotteryPlayers[winnerNum]).transfer(prizeAmount)</span>;
-<span class="cstat-no" title="statement not covered" >    lotteryPlayers = new address[](0)</span>; 
-  }
+    function finishLottery() public managerOnly {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(lotteryPlayers.length != 0 );
+        bytes memory randomInfo = abi.encodePacked(block.timestamp,block.difficulty,lotteryPlayers.length);
+        bytes32 randomHash = keccak256(randomInfo);
+        winnerNum = uint(randomHash)%lotteryPlayers.length;
+        payable(lotteryPlayers[winnerNum]).transfer(prizeAmount);
+        lotteryPlayers = new address[](0);
+    }
+&nbsp;
+    function showPLayers() public view returns(address[] memory) {
+        return lotteryPlayers;
+    }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -160,7 +175,7 @@ constructor(uint _prizeAmount){
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 29 2021 02:02:05 GMT+0700 (Новосибирск, стандартное время)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Oct 13 2021 21:22:29 GMT+0700 (Новосибирск, стандартное время)
 </div>
 </div>
 <script src="../prettify.js"></script>

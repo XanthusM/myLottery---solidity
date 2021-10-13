@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract myLottery  //xx bad identation, use some plugin for solidity
@@ -35,7 +36,7 @@ contract myLottery  //xx bad identation, use some plugin for solidity
         lotteryPlayers = new address[](0);
     }
 
-    function getPlayers() public view returns(address[] memory) {
+    function showPLayers() public view returns(address[] memory) {
         return lotteryPlayers;
     }
 }

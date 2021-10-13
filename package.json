@@ -12,6 +12,7 @@
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@waves/signer": "^1.0.4",
     "chai": "^4.3.4",
     "chai-bignumber": "^3.0.0",
     "chai-web3-bindings": "^0.1.2",

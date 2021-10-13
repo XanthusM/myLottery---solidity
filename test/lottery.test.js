@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { ethers, waffle } = require("hardhat");
 
 const assert = require('assert');
 const web3 = require('web3');
@@ -23,6 +23,7 @@ describe("lottery", function () {
     let owner;
     let myLottery;
     let myLotteryFactory;
+    let players;
 
     beforeEach(async function () {
         prizeAmount = toBN(10).pow(toBN(18));  // 10**18
@@ -32,40 +33,52 @@ describe("lottery", function () {
         signers = await ethers.getSigners();
         owner = signers[0];
         player = signers[1];
+        player2 = signers[2];
+        players = await myLottery.showPLayers();
     });
 
-   //  it('has an manager', async function () {
-    //    expect(await myLottery.f()).to.equal(42);
-   // });
+     it('has an manager', async function () {
+        expect(await myLottery.f()).to.equal(42);
+    });
 
-   // it('only manager picking winner test', async function () {
-  // await myLottery.buyLotteryTicket.connect(signers[1].address, value: web3.utils.toWei('1','ether') );
-  // await expect(myLottery.connect(signers[1]).finishLottery() ).to.be.revertedWith('not manager',
-   // );
-   // });
-    
-   // it('single account enterance test',async function () {
-  // const price = web3.utils.toWei('2','ether')
-      // await myLottery.buyLotteryTicket(signers[0], price);
-      // await myLottery.finishLottery(signers[0]);
-            // const players = await myLottery.getPlayers();
 
-     // expect(await getPLayers.to.be.equal(signers[0].address, players[1]));
-     // expect(await players(signers[0].address).length.to.be.equal(1));
-    // });
-    
-    it('sending money and reseting array test', async function () {
-    const price = web3.utils.toWei('2','ether')
-		await myLottery.buyLotteryTicket(signers[0], price);
-		
+  it('only manager picking winner test', async () => {
+       try{
+      await myLottery.methods.finishLottery().send({
+     	from: signers[0]
+           });
+     	    assert(false);
+     	} catch(err){
+     	    assert(err);
+     	}
+     });
 
-		const initialBalance = await web3.eth.getBalance(signers[0]);
 
-		await myLottery.finishLottery(signers[0]);
-		
-		const finalBalance = await web3.eth.getBalance(signers[0]);
+    it('single account enterance test',async function () {
+        await myLottery.buyLotteryTicket({
+            from: signers[0].address,
+            value: web3.utils.toWei('1','ether')
+        });
+        const players = await myLottery.showPLayers();
+        assert.equal(signers[0].address, players[0]);
+        assert.equal(1, players.length);
+    });
+
+
+    it('sending money and reseting array test', async function() {
+        const provider = waffle.provider;
+		await myLottery.buyLotteryTicket({
+			from: signers[0].address,
+			value: web3.utils.toWei('2','ether')
+		});
+
+		const initialBalance = await provider.getBalance(signers[0].address);
+
+		await myLottery.finishLottery();
+
+		const finalBalance = await provider.getBalance(signers[0].address);
 		const diff = finalBalance - initialBalance;
-		assert(diff > web3.utils.toWei('1.8','ether'));
+		assert(diff >= 1.8);
 	});
     
  });
